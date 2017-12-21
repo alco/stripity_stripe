@@ -59,10 +59,6 @@ defmodule Stripe.Customer do
     trial_end: [:create]
   }
 
-  @nullable_keys [
-    :business_vat_id, :description, :email, :metadata
-  ]
-
   @doc """
   Create a customer.
   """
@@ -88,7 +84,7 @@ defmodule Stripe.Customer do
   @spec update(binary, map, list) :: {:ok, t} | {:error, Stripe.api_error_struct}
   def update(id, changes, opts \\ []) do
     endpoint = @plural_endpoint <> "/" <> id
-    Stripe.Request.update(endpoint, changes, @schema, @nullable_keys, opts)
+    Stripe.Request.update(endpoint, changes, @schema, [], opts)
   end
 
   @doc """
