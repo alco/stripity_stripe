@@ -53,10 +53,6 @@ defmodule Stripe.Subscription do
     trial_start: [:create, :retrieve]
   }
 
-  @nullable_keys [
-    :metadata
-  ]
-
   @doc """
   Create a subscription.
   """
@@ -82,7 +78,7 @@ defmodule Stripe.Subscription do
   @spec update(binary, map, list) :: {:ok, t} | {:error, Stripe.api_error_struct}
   def update(id, changes, opts \\ []) do
     endpoint = @plural_endpoint <> "/" <> id
-    Stripe.Request.update(endpoint, changes, @schema, @nullable_keys, opts)
+    Stripe.Request.update(endpoint, changes, @schema, [], opts)
   end
 
   @doc """
